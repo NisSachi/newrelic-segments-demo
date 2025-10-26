@@ -25,7 +25,7 @@ func ComputeUntraced(c *fiber.Ctx) error {
 		requestID, c.Get("newrelic"), c.Get("traceparent"), c.Get("tracestate"), c.Get("X-Request-Id"))
 
 	// Simulate 2-3s internal processing
-	r := time.Duration(2000+rand.Intn(1000)) * time.Millisecond
+	r := time.Duration(100+rand.Intn(1000)) * time.Millisecond
 	time.Sleep(r)
 
 	start := time.Now()
@@ -87,7 +87,7 @@ func ComputeTraced(c *fiber.Ctx) error {
 	internalStart := time.Now()
 	internalSeg := txn.StartSegment("NisansalaInternalProcessing")
 	// Simulate 2-3s processing
-	r := time.Duration(2000+rand.Intn(1000)) * time.Millisecond
+	r := time.Duration(100+rand.Intn(1000)) * time.Millisecond
 	time.Sleep(r)
 
 	internalDuration := time.Since(internalStart)
